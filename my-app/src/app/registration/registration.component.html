@@ -1,7 +1,8 @@
-<form>
-    <input placeholder="Name">
-    <input placeholder="Email">
-    <input placeholder="Password" type="password">
-    <textarea placeholder="Bio"></textarea>
-    <button type="submit">Register</button>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <input formControlName="name" placeholder="Name">
+    <input formControlName="email" placeholder="Email">
+    <input formControlName="password" type="password" placeholder="Password">
+    <textarea formControlName="bio" placeholder="Bio"></textarea>
+    <button type="submit" [disabled]="!registrationForm.valid">Register</button>
 </form>
+
