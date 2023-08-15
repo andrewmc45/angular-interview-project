@@ -1,8 +1,23 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-    <input formControlName="name" placeholder="Name">
-    <input formControlName="email" placeholder="Email">
-    <input formControlName="password" type="password" placeholder="Password">
-    <textarea formControlName="bio" placeholder="Bio"></textarea>
-    <button type="submit" [disabled]="!registrationForm.valid">Register</button>
-</form>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" formControlName="name" required>
+  </mat-form-field>
 
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Bio</mat-label>
+    <textarea matInput formControlName="bio" required></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" [disabled]="!registrationForm.valid">Register</button>
+</form>

@@ -1,4 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importing Angular Material theme */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+/* Setting the height for html and body */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Styling the body */
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: linear-gradient(120deg, #f6f9fc, #eef1f5); /* A subtle background gradient */
+    transition: background 0.3s ease-in-out;
+}
+
+/* Styling the links */
+a {
+    color: #3f51b5; /* Color borrowed from the indigo-pink theme */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #673ab7; /* A darker shade for hover state */
+    text-decoration: underline;
+}
+
+/* Styling buttons for hover and focus states */
+button:hover, button:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Adding some padding for the main content */
+app-root {
+    padding: 1rem;
+}
+
+/* Styling mat-cards for a standout effect */
+mat-card {
+    border-radius: 8px; /* Rounded corners */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+mat-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* Enhanced shadow effect on hover */
+}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';  // Import HttpClient here
+import { Router } from '@angular/router';
 
 interface ApiResponse {
   success: boolean;
@@ -12,29 +13,34 @@ interface ApiResponse {
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
-  // Define the registration form here directly with FormBuilder
   registrationForm: FormGroup = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', Validators.required],
     bio: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(
+    private fb: FormBuilder, 
+    private http: HttpClient,  // Add HttpClient here
+    private router: Router
+  ) { }
 
-  // Handle form submission
   onSubmit(): void {
     if (this.registrationForm.valid) {
       const url = 'https://mocki.io/v1/7f434df6-a4ac-4817-ab7c-dd39a564d01d';
       this.http.get<ApiResponse>(url).subscribe(response => {
         if (response.success) {
-          // TODO: Navigate to the profile page once routing is set up.
-          console.log('Registration successful! Navigate to profile page here.');
+          localStorage.setItem('userRegistered', 'true');  // Set the flag in localStorage
+          this.router.navigate(['/profile']);  // Navigate to Profile page
+        } else {
+          console.error('API did not return success. Do not navigate.');
         }
+      }, error => {
+        console.error('Error making the API call', error);
       });
     } else {
       console.error('Form is invalid. Please correct any errors and try again.');
     }
-  }
+  }  
 }
-
